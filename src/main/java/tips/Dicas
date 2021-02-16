@@ -1,0 +1,48 @@
+Para o heroku
+
+Precisa adicionar o banco de dados postgres free do proprio heroku
+heroku addons:create heroku-postgresql:hobby-dev
+
+Precisa comentar as linhas do application.properties
+
+Trocar a versão do java -> 11 para 8 no pom.xml
+---
+Comando utilizados no heroku
+heroku login -> para se logar
+heroku create eventosappmatheus -> para clicar o aplicativo
+
+a partir dai começa a mexer com a pasta em si
+git init
+git add .
+git commit -m "first commit"
+git push heroku master -> para ir da pasta para o heroku(online)
+
+dai precisa ficar monitorando
+heroku logs --tail
+---
+Tabelas do postgres
+
+CREATE TABLE public.evento (
+	codigo serial NOT NULL,
+	"data" varchar(255) NOT NULL,
+	horario varchar(255) NOT NULL,
+	"local" varchar(255) NOT NULL,
+	"nome" varchar(255) NOT NULL,
+	CONSTRAINT evento_pk PRIMARY KEY (codigo)
+);
+
+create sequence hibernate_sequence;
+
+CREATE TABLE public.convidado (
+	rg varchar(255) NOT NULL,
+	nome_convidado varchar(255) NOT NULL,
+	evento_codigo int8 NULL,
+	CONSTRAINT convidado_pk PRIMARY KEY (rg)
+);
+
+
+CREATE TABLE public.evento_convidado (
+	evento_codigo int8 NOT NULL,
+	convidados_rg varchar(255) NOT NULL,
+	CONSTRAINT evento_convidados_pk PRIMARY KEY (convidados_rg)
+);
