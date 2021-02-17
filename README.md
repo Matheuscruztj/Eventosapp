@@ -1,3 +1,5 @@
+Sistema simples para cadastro e listagem dos eventos.
+
 Tecnologias utilizadas:
 - MySQL
 - Spring Boot
